@@ -11,15 +11,17 @@ import { Response } from '../models/response';
 export class ResultsComponent implements OnInit {
 
   params: string;
-  response: Response
+  responses: Response[];
 
   constructor(private activatedRoute: ActivatedRoute, private resultsService: ResultsService) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(result => {
       this.params = result.get('departure')+'/'+result.get('arrival')+'/'+result.get('date');
-      this.resultsService.getResults(this.params).subscribe(flights => this.response = flights)
+      this.resultsService.getResults(this.params).subscribe(flights => this.responses = flights)
     });
   }
+
+
 
 }

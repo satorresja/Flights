@@ -11,21 +11,12 @@ import { Input } from '../models/input';
 })
 export class ResultsService {
 
-  url: string = 'http://localhost:9090/api/flights/';
+  url: string = 'http://localhost:8080/api/flights/';
 
   constructor(private http: HttpClient) { }
 
-  public getResults(input: string): Observable<Response> {
+  public getResults(input: string): Observable<Response[]> {
 
-    return this.http.get(this.url.concat(input)).pipe(map((response: Response) => {
-      return {
-        departureStation: response.departureStation,
-        arrivalStation: response.arrivalStation,
-        departureDate: response.departureDate,
-        transport: response.transport,
-        price: response.price,
-        currency: response.currency
-      }
-    }))
+    return this.http.get(this.url.concat(input)).pipe(map(response => response as Response[]));
   }
 }

@@ -1,1 +1,24 @@
-<p>results works!</p>
+<div *ngFor="let response of responses">
+  <div *ngFor="let flight of response.transport">
+<div class="row">
+  <div class="col-sm">
+    {{response?.arrivalStation}}
+  </div>
+  <div class="col-sm">
+    {{response?.departureStation}}
+  </div>
+  <div class="col-sm">
+    {{response?.departureDate}}
+  </div>
+  <div class="col-sm">
+    {{response?.prize}}
+  </div>
+  <div class="col-sm">
+    {{response?.currency}}
+  </div>
+  <div class="col-sm">
+    {{flight?.flightNumber}}
+  </div>
+</div>
+  </div>
+</div>
