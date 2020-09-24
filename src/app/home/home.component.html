@@ -1,0 +1,28 @@
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+<div class="row">
+<div class="col">
+  <select class="custom-select" formControlName="originCity">
+    <option value="">Origen</option>
+    <option *ngFor="let origin of origins" [ngValue]="origin">{{origin}}</option>
+  </select>
+</div>
+
+<div class="col">
+  <select class="custom-select" formControlName="destinationCity">
+    <option value="">Destino</option>
+    <option *ngFor="let destination of destinations" [ngValue]="destination">{{destination}}</option>
+  </select>
+</div>
+<div class="col">
+  <input type="text"
+         formControlName="date"
+         placeholder="Datepicker"
+         class="form-control"
+         bsDatepicker
+         [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}">
+</div>
+<div class="col">
+<button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+</div>
+</div>
+</form>
