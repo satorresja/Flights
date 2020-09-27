@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"
+        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <button class="chartButton" id="Chart1">Graph1</button>
+    <button class="chartButton" id="Chart2">Graph2</button>
+    <button class="chartButton" id="Chart3">Graph3</button>
+
+
+    <div class="ct-chart ct-perfect-fourth"></div>
+    <script>
+
+
+
+        var myChart;
+        var getData = $.get("/data", { "id": "Chart1" });
+
+        getData.done(function (results) {
+
+            var data = {
+
+                labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+                series: [
+                    [15, 1, 40, 6, 10]
+                ]
+            };
+
+            var options = {
+                width: 800,
+                height: 600
+            }
+
+
+            myChart = new Chartist.Line(".ct-chart", data, options);
+
+        });
+
+        function updateChart(id) {
+            var updatedData = $.get("/data", { "id": id });
+            updatedData.done(function (results) {
+                var data = {
+
+                    labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+                    series: [
+                        results.results
+                    ]
+                };
+
+                myChart.update(data);
+            });
+        }
+
+        $(".chartButton").on("click", function () {
+            var id = $(this).attr("id");
+            updateChart(id);
+        });
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
