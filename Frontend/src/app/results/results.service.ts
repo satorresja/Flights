@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class ResultsService {
 
-  url: string = 'http://localhost:8080/api/flights/';
+  url: string = 'http://127.0.0.1:8080/api/flights/';
 
   constructor(private http: HttpClient) { }
 

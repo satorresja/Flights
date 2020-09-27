@@ -16,14 +16,14 @@ warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///vuelosDisponibles10.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///vuelosDisponibles.db"
 db = SQLAlchemy(app)
 
 
 class Transport(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     number = db.Column(db.String(20))
-    flights = db.relationship("Flight", backref="fly")
+    flights = db.relationship("Flight", backref="flightNumber_id")
     
 
 class Flight(db.Model):
@@ -33,7 +33,7 @@ class Flight(db.Model):
     departureDate = db.Column(db.String(20))
     prize = db.Column(db.Integer)
     currency = db.Column(db.Integer)
-    fly_id = db.Column(db.Integer, db.ForeignKey("transport.id"))
+    flightNumber = db.Column(db.Integer, db.ForeignKey("transport.id"))
 
 
 
@@ -47,7 +47,7 @@ passenger_1 = Flight(
     departureDate="2020/09/28",
     prize=200000,
     currency="COP",
-    fly=firstFly)
+    flightNumber_id=firstFly)
 
 passenger_2 = Flight(
     departureStation="MEDELLIN", 
@@ -55,7 +55,7 @@ passenger_2 = Flight(
     departureDate="2020/09/28",
     prize=200000,
     currency="COP",
-    fly=firstFly)
+    flightNumber_id=firstFly)
 
 secondRoute = Flight(
     departureStation="BOGOTA", 
@@ -63,7 +63,7 @@ secondRoute = Flight(
     departureDate="2020/09/28",
     prize=200000,
     currency="COP",
-    fly=secondFly)
+    flightNumber_id=secondFly)
 
 secondRoute_1 = Flight(
     departureStation="BOGOTA", 
@@ -71,7 +71,7 @@ secondRoute_1 = Flight(
     departureDate="2020/09/28",
     prize=200000,
     currency="COP",
-    fly=secondFly)
+    flightNumber_id=secondFly)
 
 
 
@@ -84,5 +84,4 @@ db.session.commit()
 
 
 
-if __name__ == "__main__":
-    app.run(debug=True, port=6969)
+
