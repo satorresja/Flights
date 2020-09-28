@@ -54,3 +54,6 @@ Our application will run in the endpints:
 Here is a demo gif with the app running into the container:
 
 ![demo](demo.gif)
+
+
+POSDATA: NO TENGO IDEA QUIÉN ES EL OTRO CONTRIBUTOR QUE HAY EN EL REPOSITORIO, NO SÉ CÓMO RESULTÓ AHÍ METIDO. 
