@@ -1,0 +1,23 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+}
+
+.table-flights {
+  max-height: 80vh;
+  min-height: 80vh;
+  overflow-y: auto;
+}
+
+.best {
+  background-color: lightgreen;
+}
+
+.worst {
+  background-color: pink;
+}

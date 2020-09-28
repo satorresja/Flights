@@ -1,0 +1,41 @@
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col">
+      <select class="custom-select" formControlName="departCity">
+        <option hidden disabled value="">From</option>
+        <option *ngFor="let depart of departs" [ngValue]="depart">
+          {{ depart }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col">
+      <select class="custom-select" formControlName="destinationCity">
+        <option hidden disabled value="">To</option>
+        <option
+          *ngFor="let destination of destinations"
+          [ngValue]="destination"
+        >
+          {{ destination }}
+        </option>
+      </select>
+    </div>
+    <div class="col">
+      <input
+        type="date"
+        class="form-control"
+        min="2020-09-27"
+        formControlName="date"
+        placeholder="Datepicker"
+      />
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-success btn-lg btn-block">
+        Search flights
+      </button>
+      <h6 style="color: crimson; padding-top: 10px" *ngIf="error">
+        {{ error }}
+      </h6>
+    </div>
+  </div>
+</form>

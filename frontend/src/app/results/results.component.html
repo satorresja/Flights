@@ -1,0 +1,35 @@
+<h1 *ngIf="numResponses === 0; else noData">
+  There are no flights for these conditions =(
+</h1>
+<ng-template #noData>
+  <div class="table-flights">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">Date</th>
+          <th scope="col">Price</th>
+          <th scope="col">Currency</th>
+          <th scope="col">Flight ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let response of responses"
+          [ngClass]="{
+            best: best_ids.includes(response.flight_id),
+            worst: worst_ids.includes(response.flight_id)
+          }"
+        >
+          <td>{{ response?.arrival_station }}</td>
+          <td>{{ response?.departure_station }}</td>
+          <td>{{ response?.departure_date }}</td>
+          <td>{{ response?.price }}</td>
+          <td>{{ response?.currency }}</td>
+          <td>{{ response?.flight_number }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

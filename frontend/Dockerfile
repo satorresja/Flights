@@ -1,0 +1,13 @@
+FROM node:14
+
+# set up angular cli
+RUN npm install -g @angular/cli
+
+WORKDIR /app
+COPY package.json /app
+RUN npm install
+RUN npm update
+COPY . /app
+
+CMD ng serve --host 0.0.0.0 --disable-host-check
+EXPOSE 4200
